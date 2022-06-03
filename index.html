@@ -12,6 +12,9 @@
     <input type="file" id="input" >
     <button id="btn" type="submit">submit</button>
   </form>
+  <textarea style="margin-top:10px" id="textarea" cols="30" rows="10"></textarea> <br/>
+  <button id="copy">Copy Text</button>
+
   <div>
     <h6>Note: <i>This Pdf Extractor  will work for Elementor LTD invoice at this time</i> </h6>
     <img style="max-width:100%" src="./img/invoicess.png" alt="">
@@ -19,6 +22,12 @@
   <script>
     const form = document.getElementById("myform")
     const input = document.getElementById("input")
+    const textarea = document.getElementById("textarea")
+    const copy = document.getElementById("copy")
+    copy.addEventListener('click', function(){
+      navigator.clipboard.writeText(textarea.value);
+    })
+
    form.addEventListener("submit", function(e){
     e.preventDefault()
     const formData = new FormData()
@@ -30,6 +39,7 @@
     .then(res=>res.json())
     .then(res=>{
       console.log(res)
+      textarea.value = JSON.stringify(res)
     })
    });
   </script>
