@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h4>Extract Information from PDF</h4>
+  <form id="myform">
+    <input type="file" id="input" >
+    <button id="btn" type="submit">submit</button>
+  </form>
+  <div>
+    <h6>Note: <i>This Pdf Extractor  will work for Elementor LTD invoice at this time</i> </h6>
+    <img style="max-width:100%" src="./img/invoicess.png" alt="">
+  </div>
+  <script>
+    const form = document.getElementById("myform")
+    const input = document.getElementById("input")
+   form.addEventListener("submit", function(e){
+    e.preventDefault()
+    const formData = new FormData()
+    formData.append('file',input.files[0])
+    fetch('http://localhost:5555/invoice', {
+      method: 'POST',
+      body: formData,
+    })
+    .then(res=>res.json())
+    .then(res=>{
+      console.log(res)
+    })
+   });
+  </script>
+</body>
+</html>
