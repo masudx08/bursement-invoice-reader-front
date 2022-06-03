@@ -32,7 +32,7 @@
     e.preventDefault()
     const formData = new FormData()
     formData.append('file',input.files[0])
-    fetch('http://localhost:5555/invoice', {
+    fetch('https://pdfreaderback.herokuapp.com/invoice', {
       method: 'POST',
       body: formData,
     })
